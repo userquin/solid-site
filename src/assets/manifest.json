@@ -6,7 +6,7 @@
   "start_url": "/",
   "name": "SolidJS.com",
   "short_name": "SolidJS",
-  "description": "Solid website containing documentation, tutorial and examples.",
+  "description": "SolidJS website containing documentation, tutorial and examples.",
   "icons": [
     {
       "src": "/img/favicons/icon-192x192.png",

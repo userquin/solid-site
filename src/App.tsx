@@ -1,11 +1,5 @@
 import {
-  JSX,
-  batch,
-  children,
   Component,
-  createComputed,
-  createSignal,
-  untrack,
   Suspense,
 } from 'solid-js';
 import { Title, Meta } from 'solid-meta';
@@ -15,11 +9,19 @@ import Header from './components/Header';
 import { AppData } from './App.data';
 import { I18nContext, createI18nContext } from '@solid-primitives/i18n';
 import { preventSmoothScrollOnTabbing } from './utils';
+import { useRegisterSW } from 'virtual:pwa-register/solid';
+import createTimer, { Schedule } from '@solid-primitives/timer';
+import ReloadPrompt from './components/ReloadPrompt';
 
 export const App = () => {
   const Routes = useRoutes(routes);
-
   preventSmoothScrollOnTabbing();
+  // Register the service work
+  useRegisterSW({
+    onRegistered(r) {
+      r && createTimer(() => r.update(), 500, Schedule.Interval);
+    }
+  });
 
   return (
     <main class="min-h-screen">
@@ -38,6 +40,7 @@ export const App = () => {
           </div>
         </Lang>
       </Router>
+      <ReloadPrompt />
     </main>
   );
 };

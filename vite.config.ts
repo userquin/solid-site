@@ -4,9 +4,7 @@ import { VitePWA, Options as VitePWAOptions } from 'vite-plugin-pwa';
 import manifest from './src/assets/manifest.json';
 
 const pwaOptions: Partial<VitePWAOptions> = {
-  registerType: 'autoUpdate',
   manifest,
-  workbox: {},
 };
 
 export default defineConfig({
